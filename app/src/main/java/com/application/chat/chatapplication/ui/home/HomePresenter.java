@@ -11,6 +11,10 @@ import io.reactivex.disposables.Disposable;
 public final class HomePresenter extends BasePresenter {
     private Disposable subscription;
 
+    HomePresenter(@NotNull HomeView homeView) {
+        super(homeView);
+    }
+
     public void onViewCreated() {
 
     }
@@ -20,15 +24,6 @@ public final class HomePresenter extends BasePresenter {
         if (this.subscription != null) {
             disposable.dispose();
         }
-    }
-
-    HomePresenter(@NotNull HomeView homeView) {
-        super(homeView);
-    }
-
-    @NotNull
-    public static HomeView getView(HomePresenter presenter) {
-        return (HomeView) presenter.getView();
     }
 }
 

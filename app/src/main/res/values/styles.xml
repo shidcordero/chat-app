@@ -6,12 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/arial</item>
+        <item name="android:fontFamily">@font/arial_font</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:letterSpacing">0.1</item>
+        <item name="buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>
     </style>
 
     <style name="AppTheme.Home" parent="AppTheme">
@@ -26,13 +27,14 @@
         <item name="android:textColor">@color/colorAppTitle</item>
     </style>
 
-    <style name="AppTheme.ButtonParent" parent="@style/TextAppearance.AppCompat.Button">
+    <style name="AppTheme.ButtonParent" parent="AppTheme">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/button_height</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="AppTheme.ButtonGreen" parent="AppTheme.ButtonParent">

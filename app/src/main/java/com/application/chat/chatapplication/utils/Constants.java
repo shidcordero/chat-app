@@ -14,4 +14,8 @@ public final class Constants {
         @NotNull
         public static final String EMAIL_REGEX = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
     }
+
+    public static final class Message {
+        public static final String OFFLINE_ERROR = "No internet connection.";
+    }
 }

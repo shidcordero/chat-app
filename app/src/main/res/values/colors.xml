@@ -9,4 +9,5 @@
     <color name="colorGray">#666666</color>
 
     <color name="colorAppTitle">#333333</color>
+    <color name="colorBarBackground">#cc333333</color>
 </resources>

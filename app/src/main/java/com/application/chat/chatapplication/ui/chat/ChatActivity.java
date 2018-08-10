@@ -3,6 +3,7 @@ package com.application.chat.chatapplication.ui.chat;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,6 +62,13 @@ public final class ChatActivity extends BaseActivity implements ChatView {
     @NotNull
     protected ChatPresenter instantiatePresenter() {
         return new ChatPresenter(this);
+    }
+
+    @NonNull
+    @NotNull
+    @Override
+    protected void showInternetStatus(boolean isConnected) {
+
     }
 
 
