@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener"/>
+
+        <variable
+            name="usernameInfo"
+            type="com.application.chat.chatapplication.model.Field"/>
+
+        <variable
+            name="passwordInfo"
+            type="com.application.chat.chatapplication.model.Field"/>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+        android:gravity="center"
+        tools:context=".ui.login.LoginActivity">
+
+        <com.application.chat.chatapplication.ui.customview.CustomTextInputLayout
+            android:id="@+id/inputLayoutUsername"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_marginTop="@dimen/tb_margin_top"
+            app:errorTextAppearance="@style/AppTheme.ErrorTextAppearance"
+            app:errorEnabled="@{safeUnbox(usernameInfo.isError)}"
+            errorText="@{usernameInfo.errorMessage}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/username"
+                style="@style/AppTheme.EditText"
+                android:hint="@string/hint_username"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@={usernameInfo.userInput}"/>
+
+        </com.application.chat.chatapplication.ui.customview.CustomTextInputLayout>
+
+        <com.application.chat.chatapplication.ui.customview.CustomTextInputLayout
+            android:id="@+id/inputLayoutPassword"
+            style="@style/AppTheme.TextInputLayout"
+            android:layout_marginTop="@dimen/tb_margin_top2"
+            app:errorTextAppearance="@style/AppTheme.ErrorTextAppearance"
+            app:errorEnabled="@{safeUnbox(passwordInfo.isError)}"
+            errorText="@{passwordInfo.errorMessage}"
+            app:layout_constraintBottom_toTopOf="@+id/login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutUsername">
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/AppTheme.EditText"
+                android:hint="@string/hint_password"
+                android:imeActionId="6"
+                android:imeActionLabel="@string/button_signUp"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@={passwordInfo.userInput}"
+                app:passwordToggleEnabled="true"/>
+
+        </com.application.chat.chatapplication.ui.customview.CustomTextInputLayout>
+
+        <Button
+            android:id="@+id/login"
+            style="@style/AppTheme.ButtonGreen"
+            android:layout_marginTop="@dimen/tb_margin_top2"
+            android:onClick="@{(view) -> listener.onClick(view)}"
+            android:text="@string/button_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutPassword" />
+
+        <com.application.chat.chatapplication.ui.customview.LinkTextView
+            android:id="@+id/sign_up"
+            style="@style/AppTheme.TextView"
+            android:layout_marginTop="@dimen/tb_margin_top3"
+            android:text="@string/button_signUp"
+            android:gravity="center"
+            android:onClick="@{(view) -> listener.onClick(view)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login" />
+
+        <TextView
+            android:id="@+id/terms"
+            style="@style/AppTheme.TextView"
+            android:layout_marginTop="@dimen/tb_margin_top4"
+            android:text="@string/terms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

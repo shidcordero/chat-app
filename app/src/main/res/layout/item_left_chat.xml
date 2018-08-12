@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="chat"
+            type="com.application.chat.chatapplication.model.Chat" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/chat_bubble_padding"
+        android:gravity="start"
+        android:layout_marginEnd="@dimen/chat_bubble_margin">
+
+        <TextView
+            style="@style/AppTheme.ChatLeftTextView"
+            android:id="@+id/message"
+            android:text="@{chat.message}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/username"
+            style="@style/AppTheme.Username"
+            android:text="@{chat.userName}"
+            android:textAlignment="textStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/message"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

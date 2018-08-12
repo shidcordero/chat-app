@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Theme Colors -->
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#666666</color>
     <color name="colorAccent">#88e306</color>
 
+    <!-- Button Colors-->
     <color name="colorGreen">#88e306</color>
     <color name="colorGreenDark">#62a304</color>
     <color name="colorGray">#666666</color>
 
+    <!-- TextBox Colors -->
+    <color name="colorTextBox">#f5f8fa</color>
+    <color name="colorTextBoxFont">#333333</color>
+    <color name="colorTextBoxHint">#647787</color>
+    <color name="colorTextError">#cc3333</color>
+
+    <!-- TextView Colors -->
+    <color name="colorTextViewFont">#647787</color>
+
+    <!-- Home Page Colors-->
     <color name="colorAppTitle">#333333</color>
     <color name="colorBarBackground">#cc333333</color>
+
+    <!-- Action Bar Colors-->
+    <color name="colorDivider">#ccd6dd</color>
 </resources>

@@ -1,40 +1,58 @@
 package com.application.chat.chatapplication.model;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Date;
+import java.util.Objects;
 
 public class Chat {
-    private final int id;
-    @NotNull
-    private final String message;
-    @NotNull
-    private final Date timestamp;
-    @NotNull
-    private final String userName;
+    private int id;
+    private String message;
+    private String timestamp;
+    private String userName;
 
-    public Chat(int id, @NotNull String message, @NotNull Date timestamp, @NotNull String userName) {
+    public Chat(int id, String message, String timestamp, String userName) {
         this.id = id;
         this.message = message;
         this.timestamp = timestamp;
         this.userName = userName;
     }
 
-    @NotNull
-    public String getMessage() {
-        return message;
+    public Chat() {
+
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setMessage(String message) {
+        if (!this.message.equals(message)){
+            this.message = message;
+        }
+    }
+
+    public void setTimestamp(String timestamp) {
+        if (!Objects.equals(this.timestamp, timestamp)){
+            this.timestamp = timestamp;
+        }
+    }
+
+    public void setUserName(String userName) {
+        if (!this.userName.equals(userName)){
+            this.userName = userName;
+        }
     }
 
     public int getId() {
         return id;
     }
 
-    @NotNull
-    public String getTimestamp() {
-        return timestamp.toString();
+    public String getMessage() {
+        return message;
     }
 
-    @NotNull
+    public String getTimestamp() {
+        return timestamp;
+    }
+
     public String getUserName() {
         return userName;
     }

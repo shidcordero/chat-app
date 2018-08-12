@@ -5,8 +5,8 @@ import com.application.chat.chatapplication.injection.module.ContextModule;
 import com.application.chat.chatapplication.injection.module.NetworkModule;
 import com.application.chat.chatapplication.ui.chat.ChatPresenter;
 import com.application.chat.chatapplication.ui.home.HomePresenter;
-
-import org.jetbrains.annotations.NotNull;
+import com.application.chat.chatapplication.ui.login.LoginPresenter;
+import com.application.chat.chatapplication.ui.signup.SignUpPresenter;
 
 import javax.inject.Singleton;
 
@@ -19,22 +19,20 @@ import dagger.Component;
 @Singleton
 @Component(modules = {ContextModule.class, NetworkModule.class})
 public interface PresenterInjector {
-    void inject(@NotNull HomePresenter presenter);
-    void inject(@NotNull ChatPresenter presenter);
+    void inject(HomePresenter presenter);
+    void inject(ChatPresenter presenter);
+    void inject(SignUpPresenter presenter);
+    void inject(LoginPresenter presenter);
 
     @Component.Builder
     interface Builder {
-        @NotNull
         PresenterInjector build();
 
-        @NotNull
-        PresenterInjector.Builder networkModule(@NotNull NetworkModule networkModule);
+        PresenterInjector.Builder networkModule(NetworkModule networkModule);
 
-        @NotNull
-        PresenterInjector.Builder contextModule(@NotNull ContextModule contextModule);
+        PresenterInjector.Builder contextModule(ContextModule contextModule);
 
         @BindsInstance
-        @NotNull
-        PresenterInjector.Builder baseView(@NotNull BaseView baseView);
+        PresenterInjector.Builder baseView(BaseView baseView);
     }
 }

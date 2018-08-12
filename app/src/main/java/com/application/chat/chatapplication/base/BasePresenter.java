@@ -6,6 +6,8 @@ import com.application.chat.chatapplication.injection.module.ContextModule;
 import com.application.chat.chatapplication.injection.module.NetworkModule;
 import com.application.chat.chatapplication.ui.chat.ChatPresenter;
 import com.application.chat.chatapplication.ui.home.HomePresenter;
+import com.application.chat.chatapplication.ui.login.LoginPresenter;
+import com.application.chat.chatapplication.ui.signup.SignUpPresenter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -15,7 +17,6 @@ public abstract class BasePresenter {
     private final BaseView view;
 
     public void onViewCreated() {
-
     }
 
     public void onViewDestroyed() {
@@ -27,8 +28,11 @@ public abstract class BasePresenter {
             this.injector.inject((HomePresenter)this);
         } else if (this instanceof ChatPresenter){
             this.injector.inject((ChatPresenter)this);
+        } else if (this instanceof SignUpPresenter){
+            this.injector.inject((SignUpPresenter)this);
+        } else if (this instanceof LoginPresenter){
+            this.injector.inject((LoginPresenter)this);
         }
-
     }
 
     @NotNull

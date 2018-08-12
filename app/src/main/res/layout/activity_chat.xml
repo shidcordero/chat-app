@@ -18,35 +18,71 @@
         <variable
             name="progressVisibility"
             type="Integer" />
+
+        <variable
+            name="chatField"
+            type="com.application.chat.chatapplication.model.Field" />
+
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".ui.chat.ChatActivity">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/chats"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/actionbar_overlay"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            app:adapter="@{adapter}"
+            app:dividerItemDecoration="@{dividerItemDecoration}"
+            app:layoutManager="@{layoutManager}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/message"
+            app:layout_constraintVertical_chainStyle="spread" />
+
         <ProgressBar
+            style="?android:progressBarStyleSmall"
             android:id="@+id/progressBar"
-            android:indeterminateTint="@color/colorPrimaryDark"
+            android:indeterminateTint="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="@{safeUnbox(progressVisibility)}"
-            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/chats"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:adapter="@{adapter}"
-            app:dividerItemDecoration="@{dividerItemDecoration}"
-            app:layoutManager="@{layoutManager}"
+        <EditText
+            android:id="@+id/message"
+            style="@style/AppTheme.ChatEditText"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:hint="@string/hint_new_message"
+            android:inputType="textMultiLine"
+            android:text="@={chatField.userInput}"
+            android:imeOptions="normal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/send"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_chainStyle="spread"/>
+
+        <Button
+            android:id="@+id/send"
+            style="@style/AppTheme.ButtonGray"
+            android:text="@string/button_send"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:onClick="@{(view) -> listener.onClick(view)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
     </android.support.constraint.ConstraintLayout>
 </layout>

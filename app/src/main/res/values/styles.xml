@@ -1,22 +1,23 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="@style/Base.Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/arial_font</item>
-        <item name="windowNoTitle">true</item>
+        <item name="windowNoTitle">false</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:letterSpacing">0.1</item>
+        <item name="android:letterSpacing">@dimen/app_letter_spacing</item>
         <item name="buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowContentOverlay">@drawable/actionbar_overlay</item>
     </style>
 
-    <style name="AppTheme.Home" parent="AppTheme">
+    <style name="AppTheme.HomeTheme" parent="AppTheme">
         <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.HomeAppTitle" parent="AppTheme">
@@ -27,6 +28,7 @@
         <item name="android:textColor">@color/colorAppTitle</item>
     </style>
 
+    <!-- Button Styling -->
     <style name="AppTheme.ButtonParent" parent="AppTheme">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/button_text_size</item>
@@ -47,6 +49,89 @@
 
     <style name="AppTheme.ButtonGray" parent="AppTheme.ButtonParent">
         <item name="android:background">@drawable/gray_button</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/gray_button_height</item>
+        <item name="android:textSize">@dimen/gray_button_text_size</item>
+        <item name="android:minWidth">80dp</item>
     </style>
 
+    <!-- EditText Styling -->
+    <style name="AppTheme.EditText" parent="AppTheme">
+        <item name="android:background">@drawable/custom_textbox</item>
+        <item name="android:textColor">@color/colorTextBoxFont</item>
+        <item name="android:textColorHint">@color/colorTextBoxHint</item>
+        <item name="android:textSize">@dimen/textbox_text_size</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/textbox_height</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:paddingLeft">@dimen/textbox_padding</item>
+        <item name="android:paddingRight">@dimen/textbox_padding</item>.
+        <item name="android:layout_marginBottom">@dimen/textbox_margin_bottom</item>
+    </style>
+
+    <style name="AppTheme.TextInputLayout" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="hintAnimationEnabled">false</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="AppTheme.ErrorTextAppearance" parent="AppTheme">
+        <item name="android:textSize">@dimen/textbox_error_size</item>v
+        <item name="android:textColor">@color/colorTextError</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="AppTheme.ChatEditText" parent="AppTheme.EditText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/chat_textbox_text_size</item>
+        <item name="android:minHeight">@dimen/chat_textbox_min_height</item>
+        <item name="android:maxHeight">@dimen/chat_textbox_max_height</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:paddingHorizontal">@dimen/textbox_padding</item>
+        <item name="android:paddingVertical">6dp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- TextView Styling -->
+
+    <style name="AppTheme.TextView" parent="AppTheme">
+        <item name="android:textColor">@color/colorTextViewFont</item>
+        <item name="android:textSize">@dimen/textview_text_size</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:letterSpacing">@dimen/textview_letter_spacing</item>
+        <item name="android:lineSpacingExtra">@dimen/textview_line_spacing</item>
+    </style>
+
+
+    <style name="AppTheme.ParentChatTextView" parent="AppTheme">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/chat_textview_text_size</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:letterSpacing">@dimen/textview_letter_spacing</item>
+        <item name="android:lineSpacingExtra">@dimen/textview_line_spacing</item>
+        <item name="android:paddingHorizontal">@dimen/chat_textview_padding_horizontal</item>
+        <item name="android:paddingVertical">@dimen/chat_textview_padding_vertical</item>
+    </style>
+
+    <style name="AppTheme.ChatLeftTextView" parent="AppTheme.ParentChatTextView">
+        <item name="android:background">@drawable/chat_bubble_left</item>
+    </style>
+
+    <style name="AppTheme.ChatRightTextView" parent="AppTheme.ParentChatTextView">
+        <item name="android:background">@drawable/chat_bubble_right</item>
+    </style>
+
+    <style name="AppTheme.Username" parent="AppTheme.ParentChatTextView">
+        <item name="android:textColor">@color/colorTextViewFont</item>
+        <item name="android:paddingHorizontal">4dp</item>
+        <item name="android:paddingVertical">@dimen/chat_username_padding_vertical</item>
+    </style>
 </resources>

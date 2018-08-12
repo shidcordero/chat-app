@@ -3,22 +3,20 @@ package com.application.chat.chatapplication.ui.home;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.Toast;
 
 import com.application.chat.chatapplication.R;
 import com.application.chat.chatapplication.base.BaseActivity;
+import com.application.chat.chatapplication.databinding.ActivityHomeBinding;
+import com.application.chat.chatapplication.ui.chat.ChatActivity;
 import com.application.chat.chatapplication.ui.login.LoginActivity;
 import com.application.chat.chatapplication.ui.signup.SignUpActivity;
-import com.application.chat.chatapplication.databinding.ActivityHomeBinding;
 import com.application.chat.chatapplication.utils.AndroidUtils;
+import com.backendless.Backendless;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Objects;
 
 public final class HomeActivity extends BaseActivity implements HomeView, View.OnClickListener {
     private ActivityHomeBinding binding;
@@ -37,6 +35,10 @@ public final class HomeActivity extends BaseActivity implements HomeView, View.O
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Backendless.initApp( this, getString(R.string.backendless_AppId), getString(R.string.backendless_ApiKey));
+        Backendless.setUrl(getString(R.string.backendless_ApiHost));
+
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         this.binding.setListener(this);
 
@@ -50,28 +52,27 @@ public final class HomeActivity extends BaseActivity implements HomeView, View.O
     }
 
     @Override
-    public void showError(@NotNull String error) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+    public void intentChat() {
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        this.startActivity(intent);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.login:
-                intentLogin();
+                this.startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.sign_up:
-                intentSignUp();
+                this.startActivity(new Intent(this, SignUpActivity.class));
                 break;
         }
     }
 
-    private void intentLogin() {
-        this.startActivity(new Intent(this, LoginActivity.class));
-    }
-
-    private void intentSignUp() {
-        this.startActivity(new Intent(this, SignUpActivity.class));
+    @Override
+    public void showError(@NotNull String errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
     }
 }
 
