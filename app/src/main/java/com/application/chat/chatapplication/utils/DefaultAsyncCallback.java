@@ -16,7 +16,7 @@ public class DefaultAsyncCallback<T> implements AsyncCallback<BackendlessUser> {
     private Context context;
     private AlertDialog alertDialog;
 
-    public DefaultAsyncCallback(Context context ) {
+    protected DefaultAsyncCallback(Context context) {
         this.context = context;
         alertDialog = new SpotsDialog.Builder()
                 .setContext(context)
@@ -26,8 +26,7 @@ public class DefaultAsyncCallback<T> implements AsyncCallback<BackendlessUser> {
         alertDialog.show();
     }
 
-    public DefaultAsyncCallback(Context context, String message )
-    {
+    protected DefaultAsyncCallback(Context context, String message) {
         this.context = context;
         alertDialog = new SpotsDialog.Builder()
                 .setContext(context)
@@ -45,7 +44,9 @@ public class DefaultAsyncCallback<T> implements AsyncCallback<BackendlessUser> {
     @Override
     public void handleFault( BackendlessFault fault )
     {
-        alertDialog.cancel();
+        if (alertDialog.isShowing()){
+            alertDialog.cancel();
+        }
         if (fault.getCode().equals(Constants.Common.INTERNET_FAULT_CODE)){
             Toast.makeText( context, Constants.Message.OFFLINE_ERROR, Toast.LENGTH_LONG ).show();
         } else {

@@ -1,19 +1,24 @@
 package com.application.chat.chatapplication.utils;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.text.InputFilter;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.application.chat.chatapplication.R;
+
+import java.util.Objects;
 
 public final class AndroidUtils {
     private static Snackbar snackbar;
 
     public static InputFilter getNoSpaceEditText(){
-        return (source, start, end, dest, dstart, dend) -> {
+        return (source, start, end, dest, dStart, dEnd) -> {
             if (source == null) return null;
             return source.toString().replace(Constants.Common.SPACE, Constants.Common.EMPTY_STRING);
         };
@@ -37,7 +42,6 @@ public final class AndroidUtils {
                 .setActionTextColor(view.getResources().getColor(android.R.color.holo_blue_light, null));
 
         TextView textView = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, view.getResources().getDimension(R.dimen.snackbar_text_size));
         textView.setGravity(Gravity.CENTER_HORIZONTAL);
         snackbar.show();
     }

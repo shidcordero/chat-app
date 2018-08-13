@@ -27,19 +27,19 @@ public final class HomePresenter extends BasePresenter {
 
     private void verifyUser(){
         Context context = this.getView().getContext();
-        Backendless.UserService.isValidLogin(new DefaultCallback<Boolean>(context) {
+        Backendless.UserService.isValidLogin(new DefaultCallback<Boolean>(context, Constants.Message.VERIFYING_USER) {
             @Override
             public void handleResponse(Boolean isValidLogin) {
                 if (isValidLogin && Backendless.UserService.CurrentUser() != null) {
                     String currentUserId = Backendless.UserService.loggedInUser();
 
                     if (!currentUserId.equals(Constants.Common.EMPTY_STRING)) {
-                        Backendless.UserService.findById(currentUserId, new DefaultCallback<BackendlessUser>(context) {
+                        Backendless.UserService.findById(currentUserId, new DefaultCallback<BackendlessUser>(context, Constants.Message.LOOGING_IN) {
                             @Override
                             public void handleResponse(BackendlessUser currentUser) {
                                 Backendless.UserService.setCurrentUser(currentUser);
                                 super.handleResponse(currentUser);
-                                successfulVerify();
+                                successfulVerify(currentUser);
                             }
                         });
                     }
@@ -49,8 +49,8 @@ public final class HomePresenter extends BasePresenter {
         });
     }
 
-    private void successfulVerify() {
-        ((HomeView)this.getView()).intentChat();
+    private void successfulVerify(BackendlessUser user) {
+        ((HomeView)this.getView()).intentChat(user);
     }
 }
 

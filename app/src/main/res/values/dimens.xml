@@ -61,7 +61,8 @@
 
     <!-- Common -->
     <dimen name="snackbar_text_size">5sp</dimen>
-    <dimen name="app_letter_spacing">0.05</dimen>
+    <dimen name="app_letter_spacing">0.05</dimen>>
+    <dimen name="padding_bot_1">1dp</dimen>
 
 
 </resources>

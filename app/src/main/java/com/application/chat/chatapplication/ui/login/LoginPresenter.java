@@ -59,12 +59,12 @@ public class LoginPresenter extends BasePresenter{
     }
 
     private void login(){
-        Backendless.UserService.login( usernameInfo.getUserInput(), passwordInfo.getUserInput(), new DefaultCallback<BackendlessUser>( this.getView().getContext() )
+        Backendless.UserService.login( usernameInfo.getUserInput(), passwordInfo.getUserInput(), new DefaultCallback<BackendlessUser>(this.getView().getContext(), Constants.Message.LOOGING_IN)
         {
             public void handleResponse( BackendlessUser backendlessUser )
             {
                 super.handleResponse( backendlessUser );
-                successfulLogin();
+                successfulLogin(backendlessUser);
             }
 
             @Override
@@ -74,8 +74,8 @@ public class LoginPresenter extends BasePresenter{
         }, true );
     }
 
-    private void successfulLogin(){
-        ((LoginView) this.getView()).intentChat();
+    private void successfulLogin(BackendlessUser user){
+        ((LoginView) this.getView()).intentChat(user);
     }
 
     public Field getUsernameInfo() {

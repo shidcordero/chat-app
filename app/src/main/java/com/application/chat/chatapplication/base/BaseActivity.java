@@ -65,12 +65,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
     private void setupNetwork() {
         //check if connected to wifi or data
-        networkDisposable = ReactiveNetwork.observeNetworkConnectivity(getApplicationContext())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(connectivity -> {
-
-                });
+//        networkDisposable = ReactiveNetwork.observeNetworkConnectivity(getApplicationContext())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(connectivity -> {
+//
+//                });
 
         //check if there's an internet connection
         internetDisposable = ReactiveNetwork.observeInternetConnectivity()

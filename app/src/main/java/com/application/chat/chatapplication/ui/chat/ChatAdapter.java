@@ -10,24 +10,29 @@ import android.view.ViewGroup;
 import com.application.chat.chatapplication.R;
 import com.application.chat.chatapplication.model.Chat;
 import com.application.chat.chatapplication.BR;
+import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
-    private List chats;
+    private ArrayList<Chat> chats;
+    private BackendlessUser user;
 
     ChatAdapter() {
-
+        user = Backendless.UserService.CurrentUser();
+        chats = new ArrayList<>();
     }
 
     @Override
     public int getItemViewType(int position) {
-        Chat item = (Chat)chats.get(position);
-        if (position % 2 == 1){
-            return R.layout.item_left_chat;
-        } else {
+        Chat item = chats.get(position);
+        if (item.getOwnerId().equals(user.getUserId())){
             return R.layout.item_right_chat;
+        } else {
+            return R.layout.item_left_chat;
         }
     }
 
@@ -50,8 +55,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         return this.chats.size();
     }
 
-    public void updateChats(List chats) {
-        this.chats = chats;
+    public void updateChats(List<Chat> chats) {
+        int chatSize = chats.size();
+        this.chats.addAll(0, chats);
+        notifyItemRangeInserted(0, chatSize);
+    }
+
+    public void updateChat(Chat chat) {
+        this.chats.add(chat);
         notifyDataSetChanged();
     }
 

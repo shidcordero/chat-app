@@ -16,6 +16,10 @@
             type="android.support.v7.widget.DividerItemDecoration" />
 
         <variable
+            name="progressPagerVisibility"
+            type="Integer" />
+
+        <variable
             name="progressVisibility"
             type="Integer" />
 
@@ -34,29 +38,37 @@
         android:fitsSystemWindows="true"
         tools:context=".ui.chat.ChatActivity">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/chats"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/actionbar_overlay"
+            android:paddingBottom="@dimen/padding_bot_1"
             android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            app:adapter="@{adapter}"
-            app:dividerItemDecoration="@{dividerItemDecoration}"
-            app:layoutManager="@{layoutManager}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/message"
-            app:layout_constraintVertical_chainStyle="spread" />
+            app:layout_constraintVertical_chainStyle="spread">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:adapter="@{adapter}"
+                app:dividerItemDecoration="@{dividerItemDecoration}"
+                app:layoutManager="@{layoutManager}" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
         <ProgressBar
-            style="?android:progressBarStyleSmall"
+            style="?android:progressBarStyle"
             android:id="@+id/progressBar"
             android:indeterminateTint="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="@{safeUnbox(progressVisibility)}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/swipeRefreshLayout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

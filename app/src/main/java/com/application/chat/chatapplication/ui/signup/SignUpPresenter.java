@@ -15,8 +15,6 @@ import com.backendless.exceptions.BackendlessFault;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-
 public class SignUpPresenter extends BasePresenter{
     private Field usernameInfo;
     private Field passwordInfo;
@@ -70,18 +68,18 @@ public class SignUpPresenter extends BasePresenter{
 
         Context context = this.getView().getContext();
 
-        Backendless.UserService.register(user, new DefaultAsyncCallback<BackendlessUser>(context) {
+        Backendless.UserService.register(user, new DefaultAsyncCallback<String>(context) {
             @Override
             public void handleResponse(BackendlessUser response) {
                 super.handleResponse(null);
-                Backendless.UserService.login( usernameInfo.getUserInput(), passwordInfo.getUserInput(), new DefaultCallback<BackendlessUser>(context)
+                Backendless.UserService.login( usernameInfo.getUserInput(), passwordInfo.getUserInput(), new DefaultCallback<BackendlessUser>(context, Constants.Message.LOOGING_IN)
                 {
                     @Override
                     public void handleResponse( BackendlessUser backendlessUser )
                     {
                         Backendless.UserService.setCurrentUser(user);
                         super.handleResponse( backendlessUser );
-                        successfulSignUp();
+                        successfulSignUp(user);
                     }
 
                     @Override
@@ -98,8 +96,8 @@ public class SignUpPresenter extends BasePresenter{
         });
     }
 
-    private void successfulSignUp() {
-        ((SignUpView)this.getView()).intentChat();
+    private void successfulSignUp(BackendlessUser user) {
+        ((SignUpView)this.getView()).intentChat(user);
     }
 
     public Field getUsernameInfo() {

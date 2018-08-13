@@ -50,6 +50,7 @@ public class Field implements Observable{
     }
 
     public void setUserInput(String userInput) {
+        userInput = userInput.trim();
         if (!userInput.equals(this.userInput)){
             this.userInput = userInput;
             propertyChangeRegistry.notifyChange(this, BR.userInput);
