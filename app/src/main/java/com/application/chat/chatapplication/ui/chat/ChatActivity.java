@@ -56,7 +56,7 @@ public final class ChatActivity extends BaseActivity implements ChatView, View.O
         this.binding.setDividerItemDecoration(itemDecorator);
         this.binding.setListener(this);
         this.binding.swipeRefreshLayout.setOnRefreshListener(this);
-        this.binding.swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
+        this.binding.swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent,null));
 
         this.getPresenter().onViewCreated();
         this.binding.setChatField(((ChatPresenter)this.getPresenter()).getChatField());

@@ -19,3 +19,29 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-dontwarn com.backendless.**
+-dontwarn weborb.**
+-keep class weborb.** {*;}
+
+-keep class com.backendless.** {*;}
+
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}
+
+-dontwarn com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
+-dontwarn io.reactivex.functions.Function
+-dontwarn rx.internal.util.**
+-dontwarn sun.misc.Unsafe
+-dontwarn org.xmlpull.v1.**
+
+-dontwarn okhttp3.**
+-keep class okhttp3.** { *; }
+-dontwarn okio.**
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.annotation.ParametersAreNonnullByDefault
